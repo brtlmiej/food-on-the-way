@@ -3,7 +3,6 @@ version: '3.8'
 services:
   food-otw-api:
     container_name: food-otw-api
-    image: food-otw-api:1.0.0
     build:
       context: .
       target: production
@@ -29,7 +28,7 @@ services:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_DB=${DB_NAME}
     volumes:
-      - ./db_data:/var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/data
     ports:
       - ${DB_PORT}:${DB_PORT}
     networks:
@@ -37,3 +36,7 @@ services:
 
 networks:
   food-otw-network:
+
+volumes:
+  db-data:
+    driver: local
