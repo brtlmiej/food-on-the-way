@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  food-otw-api:
+    container_name: food-otw-api
+    image: food-otw-api:1.0.0
+    build:
+      context: .
+      target: development
+      dockerfile: ./Dockerfile
+    command: npm run start:debug
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+      - 9229:9229
+    networks:
+      - food-otw-network
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped
+  
+  food-otw-postgres:
+    image: "postgres:15.2-alpine"
+    command: postgres -c 'max_connections=1000'
+    restart: always
+    container_name: food-otw-postgres
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    networks:
+      - food-otw-network
+
+networks:
+  food-otw-network:
