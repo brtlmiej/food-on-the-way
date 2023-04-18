@@ -33,3 +33,22 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## DB migrations
+All DB migrations are stored in /migrations directory
+```bash
+# create new migration with given name
+$ npm run migration:create --name=MigrationName
+
+# generate new migration with given name base on entities changes
+$ npm run migration:generate --name=MigrationName
+
+# run migrations that haven't been executed before
+$ npm run migration:run
+
+# revert last executed migration
+$ npm run migration:revert
+
+# synchronizes your entities with database schema
+$ npm run schema:sync
+```
