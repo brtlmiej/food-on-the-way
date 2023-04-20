@@ -34,9 +34,23 @@ services:
     networks:
       - food-otw-network
 
+  food-otw-elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.7.0
+    container_name: food-otw-elasticsearch
+    environment:
+      - cluster.name=food-otw-cluster
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    ports:
+      - ${ELASTICSEARCH_PORT}:${ELASTICSEARCH_PORT}
+    networks:
+      - food-otw-network
+
 networks:
   food-otw-network:
 
 volumes:
   db-data:
+    driver: local
+  es-data:
     driver: local

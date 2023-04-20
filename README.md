@@ -21,6 +21,16 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Run project with docker
+
+```bash
+# dev env
+$ docker-compose -f docker-compose.dev.yml up
+
+# prod env
+$ docker-compose -f docker-compose.dev.yml up
+```
+
 ## Test
 
 ```bash
