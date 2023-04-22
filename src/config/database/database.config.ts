@@ -5,7 +5,7 @@ const databaseConfig = (): DataSourceOptions => ({
   host: process.env.DB_HOST,
   database: process.env.DB_NAME,
   port: +process.env.DB_PORT,
-  entities: [__dirname + '/../../../**/*.entity{.ts,.js}'],
+  entities: ['dist/**/*.entity.js'],
   migrations: [__dirname + '/../../../migrations/**/*{.ts,.js}'],
   migrationsTableName: 'migrations',
   migrationsRun: process.env.MIGRATE_DB == 'true',

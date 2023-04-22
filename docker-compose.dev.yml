@@ -17,6 +17,9 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     restart: unless-stopped
+    depends_on:
+      - food-otw-postgres
+      - food-otw-elasticsearch
   
   food-otw-postgres:
     image: "postgres:15.2-alpine"
